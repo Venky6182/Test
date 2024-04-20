@@ -1,0 +1,11 @@
+Tast 19 
+
+1.
+
+ID
+Name
+Class Name
+Tag Name
+CSS Selector
+XPath
+Link Text
