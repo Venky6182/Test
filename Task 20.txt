@@ -1,0 +1,82 @@
+1.
+
+public class tasktwenty {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String expdate = "22";
+	
+		WebDriverManager.chromedriver().setup();
+		
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		
+	   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		
+       driver.get("https://jqueryui.com/datepicker/");
+       
+       driver.switchTo().frame(driver.findElement(By.className("demo-frame")));
+       
+       driver.findElement(By.xpath("//input[@class='hasDatepicker']")).click();
+  
+       driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click();
+       
+       WebElement table = driver.findElement(By.xpath("//div[@id='ui-datepicker-div']//child::tbody"));
+  
+       List <WebElement> data = table.findElements(By.tagName("td"));
+       
+       for(WebElement temp:data) {
+    	   
+    	   if(expdate.equals(temp.getText())){
+    		 
+    		   temp.click();
+    		   
+    		   System.out.println(expdate);
+    		   break;   
+    	   }	   
+       }
+       
+       driver.quit();
+	}
+
+}
+
+OUTPUT:
+22
+
+------------------------------------------------------------------------------------------------------------
+
+2.
+
+public class tasktwentysec {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+      WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		driver.get("https://www.guvi.in/");
+		
+		WebElement movehere = driver.findElement(By.xpath("//a[@class='nav-link btn btn-primary text-white px-4']"));
+		
+		Actions build = new Actions(driver);
+
+		build.moveToElement(movehere).click().perform();
+		
+		driver.findElement(By.xpath("//input[@class='form-control' and @id='name']")).sendKeys("Test");
+		driver.findElement(By.xpath("//input[@class='form-control' and @id='email']")).sendKeys("seleniumclass33@mail.com");
+		driver.findElement(By.xpath("//input[@class='form-control password-err' and @id='password']")).sendKeys("abcdefg@12345");
+		driver.findElement(By.xpath("//input[@class='form-control countrycode-left' and @id='mobileNumber']")).sendKeys("1234567890");
+		driver.findElement(By.xpath("//a[@class='btn signup-btn' and @id='signup-btn']")).click();
+		
+		driver.findElement(By.xpath("//a[@class='laterBtn btn' and @id='laterBtn']")).click();
+		
+		driver.quit();
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------
