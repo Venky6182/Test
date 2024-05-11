@@ -1,11 +1,32 @@
 Tast 19 
 
-1.
 
-ID
-Name
-Class Name
-Tag Name
-CSS Selector
-XPath
-Link Text
+package tasks;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class tasknineth {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+           WebDriverManager.chromedriver().setup();
+           WebDriver driver = new ChromeDriver();
+           
+           driver.get("https://www.guvi.in/register");
+           
+           driver.manage().window().maximize();
+           
+           driver.findElement(By.className("form-control")).sendKeys("Test");
+           driver.findElement(By.id("email")).sendKeys("Test@testing.com");
+           driver.findElement(By.id("password")).sendKeys("abcdefg@12345");
+           driver.findElement(By.id("mobileNumber")).sendKeys("1234567890");
+           WebElement el = driver.findElement(By.xpath("//a[@id='signup-btn']"));
+           el.click();        
+	}
+
+}
