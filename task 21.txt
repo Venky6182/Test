@@ -1,0 +1,178 @@
+1.
+
+package tasks;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
+
+public class twentyoneone {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://the-internet.herokuapp.com/iframe");
+		
+		WebElement fr = driver.findElement(By.xpath("//iframe[@class='tox-edit-area__iframe']"));
+		
+		driver.switchTo().frame(fr);
+		
+		driver.findElement(By.tagName("p")).sendKeys("Hello People");
+		
+		
+		driver.quit();	
+	}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+2.
+
+package tasks;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class twentyonetwo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		WebDriverManager.chromedriver().setup();
+		 WebDriver driver = new ChromeDriver();
+		 
+		 driver.manage().window().maximize();
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		 
+		 driver.get("https://the-internet.herokuapp.com/windows");
+		 
+		 driver.findElement(By.xpath("//a[@target='_blank' and @href='/windows/new']")).click();
+		 
+		 
+		 Set<String> windowshand = driver.getWindowHandles();
+		
+		 List<String>lswindows = new ArrayList<String>(windowshand);
+		 
+		 driver.switchTo().window(lswindows.get(1));
+		 
+		 WebElement text = driver.findElement(By.xpath("//div[@class='example']"));
+		 String Actualtext = text.getText();
+		 
+		 String Expectedtext = "New Window";
+		 
+		 if(Actualtext.contentEquals(Expectedtext)){
+			 System.out.println("Child window has correct text");
+		 }
+		 else {
+			 System.out.println("Child window contain wrong text");
+	}
+		 
+	driver.close();
+	driver.switchTo().window(lswindows.get(0));
+	driver.quit();
+		 
+	}
+
+}
+
+OUTPUT:
+Child window has correct text
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+3.
+
+package tasks;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class twentyonethree {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		WebDriverManager.chromedriver().setup();
+		 WebDriver driver = new ChromeDriver();
+		 
+		 driver.manage().window().maximize();
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		 driver.get("http://the-internet.herokuapp.com/nested_frames");
+		 
+		 WebElement fr = driver.findElement(By.xpath("//frame[@name='frame-top']"));
+		 
+		 driver.switchTo().frame(fr);
+		 System.out.println("TOP frame");
+		 
+		 WebElement frl = driver.findElement(By.xpath("//frame[@name='frame-left']"));
+		 driver.switchTo().frame(frl);
+		 System.out.println("Left frame");
+		 
+		 
+		 WebElement text = driver.findElement(By.xpath("//body[text()='LEFT']"));
+		 String Actualtext = text.getText();
+		 
+		 String Expectedtext = "LEFT";
+		 
+		 if(Actualtext.contentEquals(Expectedtext)){
+			 System.out.println("Frame has text LEFT");
+		 }
+		 else {
+			 System.out.println("no text");
+	}
+		 driver.switchTo().defaultContent();
+		 System.out.println("Parent frame");
+		 WebElement frm = driver.findElement(By.xpath("//frame[@name='frame-middle']"));
+		 driver.switchTo().frame(frm);
+		 System.out.println("Middle frame");
+		 
+		 WebElement text = driver.findElement(By.xpath("//body[text()='MIDDLE']"));
+		 String Actualtext = text.getText();
+		 
+		 String Expectedtext = "MIDDLE";
+		 
+		 if(Actualtext.contentEquals(Expectedtext)){
+			 System.out.println("Frame has text MIDDLE");
+		 }
+		 else {
+			 System.out.println("no text");
+	}
+		 driver.switchTo().defaultContent();
+		 System.out.println("Parent frame");
+		 
+		 driver.close();
+	}
+
+}
+
+OUTPUT
+
+TOP frame
+Left frame
+Frame has text LEFT
+Parent frame
+Middle frame
+Frame has text MIDDLE
+Parent frame
