@@ -80,7 +80,7 @@ public class Guvitask18fblogin {
         driver.findElement(By.xpath("//input[@type='text' and @tabindex= '0']")).sendKeys("Venky");
         driver.findElement(By.xpath("//input[@name = 'lastname']")).sendKeys("k");
         driver.findElement(By.xpath("//input[@type='text' and @name = 'reg_email__']")).sendKeys("venkatdilip11@gmail.com");
-        driver.findElement(By.xpath("//input[@type='password' and @autocomplete = 'new-password']")).sendKeys("nave123");
+        driver.findElement(By.xpath("//input[@type='password' and @autocomplete = 'new-password']")).sendKeys("venk123");
 
         Select date = new Select(driver.findElement(By.xpath("//select[@id='day' and @title = 'Day']")));
         date.selectByValue("11");
