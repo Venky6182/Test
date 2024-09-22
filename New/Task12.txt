@@ -35,8 +35,8 @@ public class EmployeeMap {
 
         a.put(4 , "aura");
         a.put(2 , "evan");
-        a.put(3, "lenin");
-        a.put(1, "naveen");
+        a.put(3, "rocky");
+        a.put(1, "venkat");
         List<String> names = new ArrayList<>(a.values());
         Collections.sort(names);
 
